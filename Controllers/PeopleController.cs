@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SGF.Context;
-using SGF.Entities;
+using SGF.Models.Data;
+using SGF.Models.Entities;
 
 namespace SGF.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class PeopleController : Controller
     {
         private readonly AppDbContext _context;

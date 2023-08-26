@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SGF.Models
+namespace SGF.Models.ViewModel
 {
     public class RegisterViewModel
     {

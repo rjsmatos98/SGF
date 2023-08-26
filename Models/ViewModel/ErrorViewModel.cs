@@ -1,6 +1,6 @@
 using System;
 
-namespace SGF.Models
+namespace SGF.Models.ViewModel
 {
     public class ErrorViewModel
     {

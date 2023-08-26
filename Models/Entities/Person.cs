@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SGF.Entities
+namespace SGF.Models.Entities
 {
   public class Person
   {

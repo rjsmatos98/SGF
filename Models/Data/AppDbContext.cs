@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SGF.Entities;
+using SGF.Models.Entities;
 
-namespace SGF.Context
+namespace SGF.Models.Data
 {
   public class AppDbContext : IdentityDbContext
   {

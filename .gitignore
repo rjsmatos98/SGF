@@ -1,1 +1,9 @@
 *.secrets.json
+
+# Visual Studio Code
+.vscode
+
+# Visual Studio
+.vs/
+bin/
+obj/
