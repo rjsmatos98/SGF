@@ -1,0 +1,135 @@
+﻿:root{
+  --primary-50: #F2FBF3;
+  --primary-100: #E2F6E5;
+  --primary-200: #C5EDCB;
+  --primary-300: #98DDA3;
+  --primary-400: #7ACD88;
+  --primary-500: #3EA950;
+  --primary-600: #2E8B3E;
+  --primary-700: #276E34;
+  --primary-800: #24572D;
+  --primary-900: #1F4827;
+
+  --header-h: 75px;
+  --footer-h: 75px;
+}
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+header {
+  background-color: var(--primary-500);
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+header .navbar-brand {
+  color: var(--primary-50) !important;
+  font-weight: bold;
+}
+
+header .nav-link {
+  color: var(--primary-50) !important;
+  border-radius: 4px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+/*header .nav-link:not(first-child) {
+  margin-left: 10px;
+}*/
+
+header .nav-link:hover {
+  background-color: var(--primary-200);
+  color: var(--primary-900) !important;
+}
+
+.btn-primary {
+  color: var(--primary-50);
+  background-color: var(--primary-500);
+  border: 0 !important;
+}
+
+.btn-primary:hover:not([disabled]) {
+  background-color: var(--primary-600);
+}
+
+.btn-primary:active {
+  background-color: var(--primary-700);
+}
+
+.btn-primary:disabled {
+  background-color: var(--primary-50);
+  color: var(--primary-700);
+  cursor: default;
+}
+
+.form-control:focus {
+  border-color: var(--primary-300) !important;
+  box-shadow: 0 0 0 0.2rem var(--primary-200) !important;
+}
+
+.form-check-input,
+.form-check-label {
+  cursor: pointer;
+}
+.form-check-input:checked {
+  accent-color: var(--primary-500) !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: var(--primary-50);
+  background-color: var(--primary-500);
+  border-color: var(--primary-600);
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid var(--primary-900);
+}
+.border-bottom {
+  border-bottom: 1px solid var(--primary-900);
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

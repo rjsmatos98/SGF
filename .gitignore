@@ -1,4 +1,5 @@
 *.secrets.json
+*.csproj.user
 
 # Visual Studio Code
 .vscode
