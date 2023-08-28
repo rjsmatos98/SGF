@@ -1,6 +1,7 @@
 @model RegisterViewModel
 
 @{
+  Layout = "_LayoutHome";
   ViewBag.Title = "Registro de Usuário";
 }
 @section Styles {
@@ -34,7 +35,7 @@
             <input asp-for="ConfirmPassword" class="form-control" />
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
           </div>
-          <div asp-validation-summary="All" class="text-danger"></div>
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <button type="submit" class="btn btn-primary mt-3 w-100">Registrar</button>
         </form>
       </div>

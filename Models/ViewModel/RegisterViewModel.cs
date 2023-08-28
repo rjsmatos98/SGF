@@ -4,11 +4,11 @@ namespace SGF.Models.ViewModel
 {
     public class RegisterViewModel
     {
-      [Required]
+      [Required(ErrorMessage = "Esse campo é obrigatório.")]
       [EmailAddress]
       public string Email { get; set; }
 
-      [Required]
+      [Required(ErrorMessage = "Esse campo é obrigatório.")]
       [DataType(DataType.Password)]
       public string Password { get; set; }
 
