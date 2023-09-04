@@ -39,7 +39,7 @@ namespace SGF.Controllers
         if(result.Succeeded)
         {
           await signInManager.SignInAsync(user, isPersistent: false);
-          return RedirectToAction("Index", "home");
+          return RedirectToAction("Index", "Dashboard");
         }
 
         foreach(var error in result.Errors)
@@ -65,7 +65,7 @@ namespace SGF.Controllers
 
         if(result.Succeeded)
         {
-          return RedirectToAction("index", "home");
+          return RedirectToAction("index", "Dashboard");
         }
 
         ModelState.AddModelError(string.Empty, "Login Inválido");

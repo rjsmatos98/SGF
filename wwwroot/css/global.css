@@ -46,7 +46,7 @@ header .nav-link:hover {
 
 .btn-primary {
   color: var(--primary-50);
-  background-color: var(--primary-500);
+  background-color: var(--primary-400);
   border: 0 !important;
 }
 
@@ -54,15 +54,18 @@ header .nav-link:hover {
   background-color: var(--primary-600);
 }
 
-.btn-primary:active {
-  background-color: var(--primary-700) !important;
+.btn:focus,
+.btn:active,
+.btn-primary:active,
+.btn-primary:focus {
   box-shadow: 0 0 0 0.2rem var(--primary-200) !important;
 }
 
+.btn-primary:active,
 .btn-primary:focus {
   background-color: var(--primary-700) !important;
-  box-shadow: 0 0 0 0.2rem var(--primary-200) !important;
 }
+
 
 .btn-primary:disabled {
   background-color: var(--primary-50);
@@ -126,6 +129,8 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 .footer {
   position: absolute;
@@ -141,4 +146,11 @@ body {
 
 .validation-summary-errors li {
   list-style: none;
+}
+
+
+
+table {
+  width: -webkit-fill-available;
+  border: 1px;
 }

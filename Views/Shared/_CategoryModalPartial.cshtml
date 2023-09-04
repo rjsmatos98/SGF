@@ -1,0 +1,29 @@
+@model SGF.Models.Entities.Category
+
+<div class="modal fade" id="categoryModal" data-backdrop="static" role="dialog" aria-labelledby="modalCategory" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCategory">Nova Categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" title="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="categoryForm">
+          <div class="form-group">
+            <label asp-for="Name">Nome</label>
+            <input asp-for="Name" class="form-control" id="categoryName">
+          </div>
+          <div class="form-group">
+            <label asp-for="Description">Descrição</label>
+            <textarea asp-for="Description" class="form-control" id="categoryDescription" name="Description"></textarea>
+          </div>
+          <div id="validationMessages" class="text-danger"></div>
+          <button type="button" id="saveCategoryButton" class="btn btn-primary" title="Salvar dados">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

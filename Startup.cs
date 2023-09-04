@@ -12,13 +12,12 @@ using SGF.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.IO;
+using SGF.Services;
 
 namespace SGF
 {
     public class Startup
     {
-
-
         public Startup(IConfiguration configuration)
         {
             var builder = new ConfigurationBuilder()
@@ -45,6 +44,7 @@ namespace SGF
             {
                 options.Password.RequireNonAlphanumeric = false;
             });
+            services.AddTransient<TransactionService>();
 
             services.AddMvc();
         }
@@ -74,7 +74,7 @@ namespace SGF
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
             });
         }
     }

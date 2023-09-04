@@ -4,9 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SGF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/global.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    @RenderSection("Styles", required: false)
 </head>
 <body>
   <div class="wrapper">
@@ -17,32 +20,17 @@
 
         <ul class="list-unstyled components">
             <li>
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Home</a>
             </li>
             <li>
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Categorias</a>
             </li>
             <li>
-                <a class="nav-link" asp-area="" asp-controller="People" asp-action="Index">Pessoa</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
+                <a class="nav-link" asp-area="" asp-controller="Transaction" asp-action="Index">Transações</a>
             </li>
         </ul>
     </nav>
 
-    <!-- Page Content  -->
     <div id="content">
       <nav class="navbar navbar-expand-lg navbar-light m-0">
           <div class="container-fluid">
@@ -56,6 +44,7 @@
                       <li class="nav-item">
                         <form method="post" asp-controller="account" asp-action="logout" >
                             <button type="submit" class="btn">
+                                <i class="fas fa-right-from-bracket"></i>
                                 Logout
                             </button>
                         </form>
@@ -71,27 +60,28 @@
     </div>
   </div>
 
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar, #content' ).toggleClass('active');
-              $('.collapse.in').toggleClass('in');
-              $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-              $("#sidebar ul li ul").removeClass("show");
-              $("#sidebar ul li").removeClass("active");
-          });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content' ).toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                $("#sidebar ul li ul").removeClass("show");
+                $("#sidebar ul li").removeClass("active");
+            });
 
-          $("#sidebar ul li").click(function() {
+            $("#sidebar ul li").click(function() {
             $("#sidebar ul li").not(this).removeClass("active");
             $(this).addClass("active");
-          });
-      });
-  </script>
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

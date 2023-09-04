@@ -1,0 +1,48 @@
+@model SGF.Models.ViewModel.DashboardViewModel
+
+@{
+  ViewData["Title"] = "Home";
+}
+
+@section Styles {
+  <style>
+    .dashboard {
+      gap: 10px;
+      justify-content: center;
+    }
+    .dashboard h2 {
+      font-weight: bold;
+      color: var(--primary-400);
+    }
+    .dashboard .card {
+      border-color: var(--primary-200);
+    }
+    .dashboard .card .card-header {
+      background-color: var(--primary-400);
+      color: var(--primary-50);
+    }
+
+    .dashboard .card p {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 0;
+      color: var(--primary-400);
+    }
+  </style>
+}
+
+<div class="dashboard container m-auto row">
+  <h2 class="col-12 text-center">Resumo Financeiro</h2>
+  <div class="card col-12 col-lg-3 p-0">
+    <h3 class="card-header">@Html.DisplayNameFor(model => model.TotalIncome)</h3>
+    <p class="card-body text-right">@Model.TotalIncome.ToString("C")</p>
+  </div>
+  <div class="card col-12 col-lg-3 p-0">
+    <h3 class="card-header">@Html.DisplayNameFor(model => model.TotalOutcome)</h3>
+    <p class="card-body text-right">@Model.TotalOutcome.ToString("C")</p>
+  </div>
+  <div class="card col-12 col-lg-3 p-0">
+    <h3 class="card-header">@Html.DisplayNameFor(model => model.TotalBalance)</h3>
+    <p class="card-body text-right">@Model.TotalBalance.ToString("C")</p>
+  </div>
+</div>

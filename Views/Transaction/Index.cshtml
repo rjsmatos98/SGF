@@ -1,0 +1,158 @@
+@{
+  ViewData["Title"] = "Transações";
+}
+
+<div class="row mb-2">
+  <div class="col col-sm-8">
+    <h3>Transações</h3>
+  </div>
+  <div class="col col-sm-4 text-right">
+    <button class="btn btn-primary" id="btnAddTransaction" data-toggle="modal" data-target="#transactionModal">Nova Transação</button>
+  </div>
+</div>
+
+<form id="searchForm">
+    <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Busque por transações">
+    </div>
+</form>
+
+<div id="transactionsTable" class="table-responsive-lg">
+    <partial name="_TransactionsPartial" model="Model" />
+</div>
+
+@{ await Html.RenderPartialAsync("_TransactionsModalPartial", new SGF.Models.Entities.Transaction()); }
+
+@section Scripts {
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var isEditing = false;
+      var transactionId;
+
+      $("#searchInput").on("keyup",function () {
+          $.ajax({
+              url: "/Transaction/Search",
+              type: "GET",
+              data: {
+                  searchTerm: $(this).val()
+              },
+              success: function (data) {
+                  $("#transactionsTable").html(data);
+              }
+          });
+      });
+
+      $.ajax({
+        url: '/Transaction/GetCategories',
+        type: 'GET',
+        success: function (data) {
+          var select = $('#transactionCategories');
+          $.each(data, function (index, category) {
+              select.append($('<option>').text(category.name).attr('value', category.id));
+          });
+        }
+      });
+
+      $(".edit-transaction").click(function() {
+        isEditing = true
+        transactionId = $(this).data("id");
+        
+        $.ajax({
+          url: "/Transaction/Edit",
+          data: { id: transactionId },
+          method: "GET",
+          success: function(data) {
+            $("#transactionDate").val(data.date.substring(0, 10))
+            $('#transactionCategories').val(data.categoryId);
+            $("#transactionDescription").val(data.description);
+            $("input[name='TransactionType']").filter("[value='" + data.transactionType + "']").prop("checked", true);
+            $("#transactionAmount").val(data.amount.toLocaleString('pt-BR', { minimumFractionDigits: 2 }));
+            $("#transactionModal").modal("show");
+          }
+        })
+      })
+
+      $(".delete-transaction").click(function() {
+        transactionId = $(this).data("id");
+        $.ajax({
+          url: "/Transaction/Delete", 
+          data: { id: transactionId },
+          method: "POST",
+          success: function(data) {
+            if (data.isValid) {
+              window.location.href = data.redirectTo;
+            } else {
+              $("#validationMessages").html(data.errors.join("<br />"));
+            }
+          }
+        });
+      })
+
+      $("#saveTransactionButton").click(function() {
+        var formData = $("#transactionForm").serialize();
+        
+        if(isEditing)
+        {
+          var transactionDescription = $("#transactionDescription").val();
+          var transactionCategoty = $("#transactionCategories").val();
+          var transactionDate = $("#transactionDate").val();
+          var transactionType = $("input[name='TransactionType']:checked").val();
+          var transactionAmount = $("#transactionAmount").val();
+
+          var editedTransaction = {
+              Id: transactionId,
+              Description: transactionDescription,
+              CategoryId: transactionCategoty,
+              Date: transactionDate,
+              TransactionType: transactionType,
+              Amount: transactionAmount
+          };
+
+          $.ajax({
+            url: "/Transaction/Edit",
+            data: editedTransaction,
+            method: "POST",
+            success: function (data) {
+              $("#validationMessages").html("");
+              if (data.isValid) {
+                window.location.href = data.redirectTo;
+              } else {
+                $("#validationMessages").html(data.errors.join("<br />"));
+              }
+            }
+          });
+        }
+        else
+        {
+          var transactionDescription = $("#transactionDescription").val();
+          var transactionCategoty = $("#transactionCategories").val();
+          var transactionDate = $("#transactionDate").val();
+          var transactionType = $("input[name='TransactionType']:checked").val();
+          var transactionAmount = $("#transactionAmount").val();
+
+          var includeTransaction = {
+              Description: transactionDescription,
+              CategoryId: transactionCategoty,
+              Date: transactionDate,
+              TransactionType: transactionType,
+              Amount: transactionAmount
+          };
+
+          $.ajax({
+            url: "/Transaction/Create",
+            data: includeTransaction,
+            method: "POST",
+            success: function (data) {
+              $("#validationMessages").html("");
+              if (data.isValid) {
+                window.location.href = data.redirectTo;
+              } else {
+                $("#validationMessages").html(data.errors.join("<br />"));
+              }
+            }
+          });
+        }
+      })
+    });
+  </script>
+}
