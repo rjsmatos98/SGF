@@ -31,6 +31,8 @@
         </ul>
     </nav>
 
+    <div id="layoutOverlay" class="overlay"></div>
+
     <div id="content">
       <nav class="navbar navbar-expand-lg navbar-light m-0">
           <div class="container-fluid">
@@ -68,16 +70,20 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
-                $('#sidebar, #content' ).toggleClass('active');
+                $('#sidebar, #content, #layoutOverlay' ).toggleClass('active');
                 $('.collapse.in').toggleClass('in');
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
                 $("#sidebar ul li ul").removeClass("show");
                 $("#sidebar ul li").removeClass("active");
             });
 
+            $("#layoutOverlay").on('click', function() {
+                $('#sidebar, #content, #layoutOverlay' ).toggleClass('active');
+            });
+
             $("#sidebar ul li").click(function() {
-            $("#sidebar ul li").not(this).removeClass("active");
-            $(this).addClass("active");
+                $("#sidebar ul li").not(this).removeClass("active");
+                $(this).addClass("active");
             });
         });
     </script>

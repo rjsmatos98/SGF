@@ -90,8 +90,18 @@ a:focus {
   color: var(--primary-50);
 }
 
-
-
+.overlay {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s linear, visibility 0.3s linear;
+}
 
 #content {
   width: calc(100% - 250px);
@@ -133,7 +143,6 @@ li button[type="submit"]:hover {
   color: var(--primary-50);
 }
 
-
 @media (max-width: 768px) {
   #sidebar {
       margin-left: -250px;
@@ -144,7 +153,8 @@ li button[type="submit"]:hover {
   #content {
       width: 100%;
   }
-  #content.active {
-      width: calc(100% - 250px);
+  .overlay.active {
+    visibility: visible;
+    opacity: 1;
   }
 }
