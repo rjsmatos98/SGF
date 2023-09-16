@@ -73,19 +73,22 @@
       })
 
       $(".delete-transaction").click(function() {
-        transactionId = $(this).data("id");
-        $.ajax({
-          url: "/Transaction/Delete", 
-          data: { id: transactionId },
-          method: "POST",
-          success: function(data) {
-            if (data.isValid) {
-              window.location.href = data.redirectTo;
-            } else {
-              $("#validationMessages").html(data.errors.join("<br />"));
+        if(confirm("Deseja deletar essa transação?"))
+        {
+          transactionId = $(this).data("id");
+          $.ajax({
+            url: "/Transaction/Delete", 
+            data: { id: transactionId },
+            method: "POST",
+            success: function(data) {
+              if (data.isValid) {
+                window.location.href = data.redirectTo;
+              } else {
+                $("#validationMessages").html(data.errors.join("<br />"));
+              }
             }
-          }
-        });
+          });          
+        }
       })
 
       $("#saveTransactionButton").click(function() {

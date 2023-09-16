@@ -61,19 +61,22 @@
       })
 
       $(".delete-category").click(function() {
-        categoryId = $(this).data("id");
-        $.ajax({
-          url: "/Category/Delete", 
-          data: { id: categoryId },
-          method: "POST",
-          success: function (data) {
-            if (data.isValid) {
-              window.location.href = data.redirectTo;
-            } else {
-              $("#validationMessages").html(data.errors.join("<br />"));
+        if(confirm("Deseja deletar essa categoria?"))
+        {
+          categoryId = $(this).data("id");
+          $.ajax({
+            url: "/Category/Delete", 
+            data: { id: categoryId },
+            method: "POST",
+            success: function (data) {
+              if (data.isValid) {
+                window.location.href = data.redirectTo;
+              } else {
+                $("#validationMessages").html(data.errors.join("<br />"));
+              }
             }
-          }
-        });
+          });
+        }
       })
 
       $("#saveCategoryButton").click(function () {
